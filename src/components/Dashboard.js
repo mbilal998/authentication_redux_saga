@@ -7,7 +7,9 @@ import { logOut } from '../redux/actions/authenticate';
 export default function Dashboard() {
 
     const [error, setError] = useState('');
+
     const currentUser = useSelector(state => state.current_main.currentUser);
+    //const currentUser = get
     const history = useHistory();
     const dispatch = useDispatch();
 
