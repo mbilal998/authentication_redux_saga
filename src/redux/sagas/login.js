@@ -7,13 +7,11 @@ import { loginData, logOutData } from './services/services';
 function* login(action) {
     try {
         const Data = yield call(loginData, action.payload);
-        if (Data) {
-            var user = auth.currentUser;
-            if (user) {
-                yield put({ type: CURRENT_USER_SUCCESS, currentUser: user });
-            } else {
-                yield put({ type: CURRENT_USER_FAILED, currentUser: {} });
-            }
+        var user = auth.currentUser;
+        if (user) {
+            yield put({ type: CURRENT_USER_SUCCESS, currentUser: user });
+        } else {
+            yield put({ type: CURRENT_USER_FAILED, currentUser: {} });
         }
         yield put({ type: 'LOGIN_SUCCESS', login_value: Data });
     } catch (e) {

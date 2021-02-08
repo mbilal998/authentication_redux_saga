@@ -7,6 +7,7 @@ export function signUp(data) {
     }
 }
 export function logIn(data) {
+    console.log(data);
     return {
         type: type.LOGIN_USER,
         payload: data

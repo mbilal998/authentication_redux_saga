@@ -5,7 +5,19 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { logIn } from '../redux/actions/authenticate';
 
-export default function Login() {
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+    LoginUser: data => dispatch(logIn(data))
+})
+
+function Login(props) {
+
+    console.warn(props);
 
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -19,21 +31,27 @@ export default function Login() {
         try {
             setError('');
             setLoading(true);
+
             const loginuser = {
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             }
 
             // TODO:: map dispatch to props
-            // TODO:: map state to props
-
-            // TODO:: Redux sauce
-
-            dispatch(logIn(loginuser))
+            props.LoginUser(loginuser);
 
             setTimeout(() => {
                 history.push('/');
             }, 2000)
+
+            // TODO:: map state to props
+            // TODO:: Redux sauce
+
+            //dispatch(logIn(loginuser))
+
+            // setTimeout(() => {
+            //     history.push('/');
+            // }, 2000)
 
         } catch {
             setError("Faild to log in");
@@ -67,3 +85,4 @@ export default function Login() {
         </>
     )
 }
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
