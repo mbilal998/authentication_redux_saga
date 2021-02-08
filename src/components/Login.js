@@ -23,10 +23,18 @@ export default function Login() {
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             }
+
+            // TODO:: map dispatch to props
+            // TODO:: map state to props
+
+            // TODO:: Redux sauce
+
             dispatch(logIn(loginuser))
+
             setTimeout(() => {
                 history.push('/');
             }, 2000)
+
         } catch {
             setError("Faild to log in");
         }
