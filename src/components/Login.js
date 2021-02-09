@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux'
 import { logIn } from '../redux/actions/authenticate';
 
 import { connect } from 'react-redux';
 
+// I define but not use it for now
 const mapStateToProps = state => ({
 
 })
@@ -14,16 +15,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     LoginUser: data => dispatch(logIn(data))
 })
+// End
 
 function Login(props) {
-
-    console.warn(props);
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
     const dispatch = useDispatch();
 
     async function hundleSubmit(e) {
@@ -36,22 +35,7 @@ function Login(props) {
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             }
-
-            // TODO:: map dispatch to props
-            props.LoginUser(loginuser);
-
-            setTimeout(() => {
-                history.push('/');
-            }, 2000)
-
-            // TODO:: map state to props
-            // TODO:: Redux sauce
-
-            //dispatch(logIn(loginuser))
-
-            // setTimeout(() => {
-            //     history.push('/');
-            // }, 2000)
+            dispatch(logIn(loginuser))
 
         } catch {
             setError("Faild to log in");

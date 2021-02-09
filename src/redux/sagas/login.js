@@ -1,8 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { auth } from '../../firebase';
 import { CURRENT_USER_SUCCESS, CURRENT_USER_FAILED } from '../types';
-
 import { loginData, logOutData } from './services/services';
+import { push } from 'connected-react-router';
 
 function* login(action) {
     try {
@@ -14,6 +14,9 @@ function* login(action) {
             yield put({ type: CURRENT_USER_FAILED, currentUser: {} });
         }
         yield put({ type: 'LOGIN_SUCCESS', login_value: Data });
+
+        yield put(push('/'));
+
     } catch (e) {
         yield put({ type: 'LOGIN_FAILED', message_value: e.message });
     }

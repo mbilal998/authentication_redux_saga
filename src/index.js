@@ -4,13 +4,14 @@ import App from './components/App';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from 'react-redux';
 
-import { store, persistor } from './redux/store';
-
+import { configureStore } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 
+const config = configureStore(/* provide initial state if any */)
+
 ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+  <Provider store={config.store}>
+    <PersistGate loading={null} persistor={config.persistor}>
       <React.StrictMode>
         <App />
       </React.StrictMode>

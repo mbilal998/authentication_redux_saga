@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button, Card, Alert, Col } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-//import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfile } from '../redux/actions/authenticate';
@@ -10,10 +9,8 @@ import { updateProfile } from '../redux/actions/authenticate';
 export default function UpdateProfile() {
 
     const formRef = useRef();
-    //const { currentUser, updateEmail, updatePassword } = useAuth();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
     const [currentUserInformation, setCurrentUserInformation] = useState();
     const currentUser = useSelector(state => state.current_main.currentUser);
     const dispatch = useDispatch();
@@ -30,7 +27,6 @@ export default function UpdateProfile() {
             return setError("Password not Match");
         }
 
-        //let promises = [];
         setLoading(true)
         setError("");
 
@@ -51,42 +47,10 @@ export default function UpdateProfile() {
 
             dispatch(updateProfile(userinfo))
 
-            setTimeout(() => {
-                history.push('/');
-            }, 1000)
-
         } catch {
             setError("Faild to create an account");
         }
         setLoading(false);
-
-        // if (formRef.current['email'].value !== currentUser.email) {
-        //     promises.push(updateEmail(formRef.current['email'].value));
-        // }
-
-        // if (formRef.current['password'].value) {
-        //     promises.push(updatePassword(formRef.current['password'].value));
-        // }
-
-        // Promise.all(promises)
-        //     .then(() => {
-        //         db.collection("users").doc(currentUser.uid).update(
-        //             {
-        //                 firstname: formRef.current['firstname'].value,
-        //                 lastname: formRef.current['lastname'].value,
-        //                 company: formRef.current['company'].value,
-        //                 designation: formRef.current['designation'].value,
-        //                 address: formRef.current['designation'].value,
-        //             }
-        //         );
-        //         history.push("/")
-        //     })
-        //     .catch(() => {
-        //         setError("Failed to update account")
-        //     })
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
     }
     return (
         <>
