@@ -21,8 +21,8 @@ function Login() {
 
       if (formref.current) {
         const loginuser = {
-          email: formref.current["email"]?.value,
-          password: formref.current["password"]?.value,
+          email: formref.current["email"].value,
+          password: formref.current["password"].value,
         };
         dispatch(logIn(loginuser));
       }
