@@ -16,7 +16,7 @@ import rootSaga from "./sagas/index";
 const persistConfig = {
   key: "currentUser",
   storage,
-  whitelist: ["current_main"],
+  whitelist: ["current_main", "token_main"],
 };
 
 export const history = createBrowserHistory();

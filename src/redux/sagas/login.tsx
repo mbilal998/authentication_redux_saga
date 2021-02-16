@@ -7,12 +7,15 @@ import { push } from "connected-react-router";
 function* login(action: any) {
   try {
     const Data = yield call(loginData, action.payload);
+
     var user = auth.currentUser;
+
     if (user) {
       yield put({ type: CURRENT_USER_SUCCESS, currentUser: user });
     } else {
       yield put({ type: CURRENT_USER_FAILED, currentUser: {} });
     }
+
     yield put({ type: "LOGIN_SUCCESS", login_value: Data });
 
     yield put(push("/"));

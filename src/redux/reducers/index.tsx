@@ -4,7 +4,7 @@ import login_reducer from "./login";
 import currentUser_reducer from "./currentUser";
 import reset_reducer from "./resetPassword";
 import updateprofile_reducer from "./updateProfile";
-
+import token_reducer from "./token";
 import { connectRouter } from "connected-react-router";
 
 const rootReducers = (history: any) =>
@@ -14,6 +14,7 @@ const rootReducers = (history: any) =>
     current_main: currentUser_reducer,
     reset_main: reset_reducer,
     updateprofile_main: updateprofile_reducer,
+    token_main: token_reducer,
     router: connectRouter(history),
   });
 
